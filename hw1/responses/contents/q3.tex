@@ -1,0 +1,37 @@
+% !TEX root = ../*.tex
+Show that $r_n \convg{P} \rho$ when finite second order moments exist for the underlying population distribution.
+\begin{align}
+    \label{q3_eq}
+  \nonumber  r_n &= \frac{\sum_{i=1}^n( X_i - \bar{X_n})( Y_i - \bar{Y_n})}{\sqrt{\big(\sum_{i=1}^n X_i - \bar{X}\big)^2}\sqrt{(\sum_{j=1}^n Y_j - \bar{Y})^2}}\\
+  \nonumber  r_n &= \frac{\frac{1}{n}\sum_{i=1}^n( X_i - \bar{X_n})( Y_i - \bar{Y_n})}
+                    {\sqrt{\frac{1}{n}}\sqrt{\frac{1}{n}}\sqrt{\big(\sum_{i=1}^n X_i - \bar{X_n}\big)^2}\sqrt{(\sum_{j=1}^n Y_j - \bar{Y_n})^2}}\\
+        &= \frac{\frac{1}{n}\sum_{i=1}^n(X_i - \bar{X_n})(Y_i - \bar{Y_n})}{\sqrt{\cdot\tilde{s}^2_{Y_n}}\sqrt{\cdot\tilde{s}^2_{X_n}}}
+\end{align}
+With  $\tilde{s}^2_{X_n}$ and $\tilde{s}^2_{Y_n}$ being the sample variance for $X_n$ and $Y_n$ respectively.
+By the WLLN, both $\tilde{s}^2_{Y_n} \convg{P} \sigma^2_{Y_n}$ and $\tilde{s}^2_{X_n}\convg{P} \sigma^2_{X_n}$.
+By the multivariate continuous mapping theorem then, 
+\begin{equation*}
+    \sqrt{s^2_{Y_n}}\sqrt{s^2_{X_n}} \convg{P} \sigma_Y\sigma_X
+\end{equation*}
+
+Similarly, the numerator of equation \ref{q3_eq} can be written as:
+\begin{align*}
+    \frac{1}{n}\sum_{i=1}^n( X_i - \bar{X_n})(Y_i - \bar{Y_n})) &= \frac{1}{n}(\sum_{i=1}^n X_iY_i - \bar{X_n}\bar{Y_n})\\
+                                                                            &=\frac{1}{n}\sum_{i=1}^n X_iY_i - \bar{X_n}\bar{Y_n}
+\end{align*}
+Again, by the WLLN and the multivariate continuous mapping theorem, 
+\begin{align*}
+    \frac{1}{n}\sum_{i=1}^n X_iY_i \convg{P} \expec{XY}\\
+    X_nY_n \convg{P} \expec{X}\expec{Y}\\
+\end{align*}
+giving,
+\begin{align*}
+    \frac{1}{n}\sum_{i=1}^n X_iY_i - X_nY_n \convg{P} \expec{XY}-\expec{X}\expec{Y} = \cov{X}{Y}\\
+\end{align*}
+Thus, for equation \ref{q3_eq}
+\begin{align*}
+    \frac{\frac{1}{n}(\sum_{i=1}^n X_i - \bar{X})(\sum_{j=1}^n Y_j - \bar{Y})}{\sqrt{\cdot\tilde{s}^2_{Y_n}}\sqrt{\cdot\tilde{s}^2_{X_n}}} \convg{P}
+    \frac{\cov{X}{Y}}{\sigma_{X_n}\sigma_{Y_n}} = \rho
+\end{align*}
+
+

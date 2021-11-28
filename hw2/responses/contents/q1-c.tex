@@ -1,0 +1,16 @@
+\prompt{Find the expected information matrix for $\text{Normal}(\mu, \sigma^2)$.}
+
+This was explained in lecture. 
+The only term from the above matrix that needs to be calculated is the lower right one.
+
+\begin{align*}
+\expec{\frac{-n}{2\sigma^2} +\frac{\sum_{i=1}^n (y_i - \mu)^2 }{(\sigma^2)^3}} 
+&=\frac{-n}{2(\sigma^2)^2} + \frac{1}{(\sigma^2)^3}\expec{\sum_{i=1}^n (y_i - \mu)^2} \\
+&=\frac{-n}{2(\sigma^2)^2} + \frac{1}{(\sigma^2)^3}\expec{\sum_{i=1}^n ((y_i - \bar{y})^2 +  (\bar{y} -\mu)^2)} \\
+&=\frac{-n}{2(\sigma^2)^2} + \frac{1}{(\sigma^2)^3}\Big(\expec{\sum_{i=1}^n (y_i - \bar{y})^2} +  n\expec{(\bar{y} -\mu)^2}\Big) \\
+&=\frac{-n}{2(\sigma^2)^2} + \frac{1}{(\sigma^2)^3}\Big((n-1)\expec{\frac{\sum_{i=1}^n (y_i - \bar{y})^2}{(n-1)}} +  n\expec{(\bar{y} -\mu)^2}\Big) \\
+&=\frac{-n}{2(\sigma^2)^2} + \frac{1}{(\sigma^2)^3}\Big((n-1)\sigma^2 +  n\Big(\frac{\sigma^2}{n}\Big)\Big)\\
+&=\frac{-n}{2(\sigma^2)^2} + \frac{1}{(\sigma^2)^3}n\sigma^2\\
+&=\frac{n}{2(\sigma^2)^2}
+\end{align*}
+

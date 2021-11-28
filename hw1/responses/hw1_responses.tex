@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+
+\usepackage[shortlabels]{enumitem}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+% \usepackage{hyperref}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\newcommand{\limit}[2]{ \underset{#1\rightarrow #2}{\lim}\, }
+\newcommand{\convg}[1]{ \overset{#1}{\rightarrow} }
+\newcommand{\var}[1]{ \text{Var}(#1)}
+\newcommand{\cov}[2]{ \text{Cov}(#1, #2)}
+\newcommand{\expec}[1]{\mathbb{E}[#1]}
+\newcommand{\Exp}[1]{ \text{Exponential}(#1)}
+\newcommand{\Pois}[1]{ \text{Poisson}(#1)}
+\newcommand{\Poisf}[2]{ #2^{#1} \frac{e^{-#2}}{#1!}}
+
+\begin{document}
+\title{Homework 1 Responses}
+\author{Chris Crabtree}
+\date{Sept. 30, 2021}
+
+{
+\let\clearpage\relax
+\maketitle
+}
+
+\begin{enumerate}
+    \item
+        \input{contents/q1.tex}
+    \item 
+        \input{contents/q2.tex}
+    \item
+        \input{contents/q3.tex}
+    \item
+        \input{contents/q4.tex}
+    \item
+        \input{contents/q5.tex}
+    \item
+        \input{contents/q6.tex}
+    \item
+        \input{contents/q7.tex}
+    \item
+        \input{contents/q8.tex}
+    \item Did not have time for this.
+    \item Done
+
+\end{enumerate}
+
+\end{document}
+

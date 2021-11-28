@@ -1,0 +1,17 @@
+\prompt{Show that $\frac{n(\theta - \theta_{MLE})}{\theta}\convg{dist}E$}
+
+The likelihood for this problem is:
+\begin{align*}
+    L(\theta) = (1/\theta)^n = \theta^{-n}
+\end{align*}
+
+Since we want to make the likelihood large, we must at a minimum make $\theta$ larger than the maximum of all the data points.
+
+$\theta$ clearly decays in $n$ so the MLE will trivially be the tightest fit on the data (i.e. $\max(Y_{1:n})$ or the $n^th$ order statistic).
+
+The CDF of $\theta_{MLE}$ is then $(x/\theta)^n$ which means $\theta_{MLE}\convg{p} \theta$.
+I did not have time to finish this problem though.
+
+
+
+

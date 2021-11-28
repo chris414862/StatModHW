@@ -1,0 +1,15 @@
+Show that if $X \sim N(\mu, \sigma^2$, then $M_{X}(t) = e^{\mu t +\sigma^2 t^2/2}$.
+
+I will show this directly from the definition:
+\begin{align*}
+    M_{X}(t) = \expec{e^{tX}} &= \int e^{tx}\frac{1}{\sigma\sqrt{2\pi}}e^{-(\frac{x-\mu}{\sqrt{2}\sigma})^2}dx\\
+            &= \frac{1}{\sigma\sqrt{2\pi}}\int e^{tx-(\frac{x-\mu}{\sqrt{2}\sigma})^2}dx\\
+            &= \frac{1}{\sigma\sqrt{2\pi}}\int e^{t(u\sigma+\mu)-(\frac{u}{\sqrt{2}})^2}\sigma du \tag*{let $u = \frac{x-\mu}{\sigma}$}\\
+            &= \frac{e^{t\mu}}{\sqrt{2\pi}}\int e^{-\frac{u^2}{2}+t\sigma u} du \\
+            &= \frac{e^{t\mu}}{\sqrt{2\pi}}\int e^{-\frac{1}{2}(u+t\sigma)^2+\frac{t^2\sigma^2}{2}} du \tag*{(completing the square)}\\
+            &= e^{t\mu}e^{\frac{t^2\sigma^2}{2}}\int\frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}(u+t\sigma)^2} du \\
+            &= e^{t\mu+\frac{t^2\sigma^2}{2}} \tag*{(Normal($u+t\sigma$, 1) integrates to 1)}\\
+            \blacksquare
+\end{align*}
+
+

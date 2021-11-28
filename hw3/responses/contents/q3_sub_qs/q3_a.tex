@@ -1,0 +1,74 @@
+\prompt{
+Show that the posterior $p(\theta|y)$ has the form:
+\begin{equation*}
+    \frac{
+        \frac{\Beta{13}{27}}{\Beta{10}{20}}\frac{1}{\Beta{13}{27}}\theta^{12}(1-\theta)^{26} 
+        +
+    \frac{\Beta{23}{17}}{\Beta{10}{20}}\frac{1}{\Beta{23}{17}}\theta^{22}(1-\theta)^{16} 
+    }
+    {
+        \frac{\Beta{13}{27}}{\Beta{10}{20}}
+        +
+        \frac{\Beta{23}{17}}{\Beta{10}{20}}
+    }
+\end{equation*}
+}
+
+Firstly, note that the posterior above can alternatively be simplified by multiplying the numerator and denominator by $\Beta{10}{20}$, cancelling the like Beta factors in the numerator, and writing the exponents in the standard form of a Beta pdf:
+
+\begin{equation}
+    \label{q3:target_eq}
+    \frac{
+            \theta^{13-1}(1-\theta)^{27-1} 
+        +
+             \theta^{23-1}(1-\theta)^{17-1} 
+    }
+    {
+        \Beta{13}{27}
+        +
+        \Beta{23}{17}
+    }
+\end{equation}
+
+Now we can simply note that the posterior is proportional to the likelihood times the prior and the kernel of that quantity is of the form of another mixture of Betas:
+
+\begin{align*}
+    p(\theta\vert y) &\propto p(y \vert \theta )\cdot p(\theta)\\
+                     &={10 \choose 3}\theta^{3}(1-\theta)^{7}\cdot\Big(
+                         \frac{1}{2\Beta{10}{20}}\theta^{10-1}(1-\theta)^{20-1}
+                 +
+             \frac{1}{2\Beta{20}{10}}\theta^{20-1}(1-\theta)^{10-1}\Big)\\
+                     &={10 \choose 3}\frac{1}{2\Beta{10}{20}}\Big(
+                    \theta^{3}(1-\theta)^{7}\theta^{10-1}(1-\theta)^{20-1}
+                 +
+                    \theta^{3}(1-\theta)^{7}\theta^{20-1}(1-\theta)^{10-1}\Big)\\
+                     &\propto
+                    \theta^{13-1}(1-\theta)^{27-1}
+                 +
+                    \theta^{23-1}(1-\theta)^{17-1}\\
+\end{align*}
+
+I recognize the first term as a $\Beta(13, 27)$ and the second as a $\Beta(23, 17)$. 
+I can now immediately write down the normalizing constant for the mixture:
+\begin{align*}
+                    \int\theta^{13-1}(1-\theta)^{27-1}
+                 +
+                    \theta^{23-1}(1-\theta)^{17-1}
+                    =
+            \Beta{13}{27} + \Beta{23}{17}\\
+\end{align*}
+The posterior can therefore be written:
+\begin{align*}
+                p(\theta\vert y)
+                =\frac{
+                    \theta^{13-1}(1-\theta)^{27-1} +\theta^{23-1}(1-\theta)^{17-1}
+                }
+                {
+                    \Beta{13}{27} + \Beta{23}{17}
+                }\\
+\end{align*}
+This is the same as equation \ref{q3:target_eq} so we are finished.
+
+
+
+

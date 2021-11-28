@@ -1,0 +1,31 @@
+% !TEX root = ../*.tex
+Show that $SE(\hat{\alpha}) \approx \sqrt{\frac{2\alpha(\alpha - 1)}{n}}$, where $\hat{\alpha} = \bar{Y_n}/s^2_n$ with $n$ samples drawn from a Gamma distribution with parameters $\alpha, \beta$.
+
+Following the strategic outline from lecture, we will use the multivariate delta method to derive the variance of $\hat{\alpha}$ for large values of $n$.
+From this we can easily get the standard error. 
+
+Using the information given on slide 124 of lecture, we have:
+\begin{equation*}
+    \var{\bar{Y}_n} = \frac{\alpha}{\beta^2n}, \var{s^2_n} = \frac{6\alpha}{\beta^4n} + \frac{2\alpha^2}{\beta^4n}, \cov{\bar{Y}_n}{s^2_n} = \frac{2\alpha}{\beta^3n} \\
+\end{equation*}
+\begin{equation*}
+    h(\theta) = \theta_1^2/\theta_2, \theta_1 = \mu^2\bar{Y_n}, \theta_2 = \sigma
+\end{equation*}
+Calculating the partial derivatives of $h(\theta)$ gives $h(\theta)'^\intercal = \begin{bmatrix} 2\beta &-\beta \end{bmatrix}$
+\begin{equation*}
+h(\theta)'= 
+    \begin{bmatrix}
+       2\beta\\
+       -\beta
+    \end{bmatrix}\\
+\end{equation*}
+Because of time constraints I will omit the full matrix calculations for the variance, but as shown in lecture:
+\begin{equation*}
+    \var{\bar{Y_n}^2/s^2_n} =  \frac{\alpha(\alpha +1)}{n}
+\end{equation*}
+By the continuous mapping theorem, and the fact that $\hat{\alpha}$ is an unbiased estimator (i.e. $\expec{\hat{\alpha}} = \alpha$), we have that when $n$ grows large:
+\begin{equation*}
+SE(\hat{\alpha})\approx \sqrt{\frac{\alpha(\alpha +1)}{n}}  \approx \sqrt{\frac{\hat{\alpha}(\hat{\alpha} +1)}{n}}
+\end{equation*}
+
+

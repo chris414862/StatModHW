@@ -1,0 +1,21 @@
+\prompt{Show that the Binomial belongs to exponential family distributions.}
+
+Using the notation of the factorization of exponential family distributions (EFD) introduced in lecture:
+\begin{align}
+    \label{q2:EFD}
+    p(\vec{y}|\vec{\theta}) \equiv \text{EFD}(\vec{\theta}) \text{ iff } p(\vec{y}|\vec{\theta}) = g(\vec{\theta})h(\vec{y})\exp(\phi(\vec{\theta})^T u(\vec{y})))\\
+\end{align}
+The Binomial PDF can be manipulated as follows:
+\begin{align*}
+    {n \choose k}\theta^k(1-\theta)^{n-k} &= {n \choose k}(1-\theta)^{n}\Big(\frac{\theta}{(1-\theta)}\Big)^k\\
+    &= {n \choose k}(1-\theta)^{n}\exp(k\log\Big(\frac{\theta}{(1-\theta)}\Big))\\
+\end{align*}
+
+Since the Binomial is a single parameter family (is not typically considered a parameter) I can a let equation \ref{q2:EFD} have scalar quantities and let:
+\begin{align*}
+    h(k) &= {n \choose k}\\
+    g(\theta) &= (1-\theta)^{n}\\
+    u(k) &= k\\
+    \phi(k) &= \log\Big(\frac{\theta}{(1-\theta)}\Big)\\
+\end{align*}
+

@@ -1,0 +1,34 @@
+% !TEX root = ../*.tex
+
+This has nearly the identical reasoning as in part \ref{Sl_add}, except with a multiplicative factor instead of an additive one.
+
+I will start where the proofs diverge:
+
+
+Note that,    
+\begin{align*}
+    \abs{Z_n - z_0} \leq \epsilon &\equiv z_0 - \epsilon \leq Z_n \leq z_0 + \epsilon \\
+                               &\Rightarrow \\
+    X_n (z_0 - \epsilon) &\leq X_n \cdot Z_n \leq X_n(z_0 + \epsilon), \quad\quad X_n = x \geq 0\\
+    X_n (z_0 - \epsilon) &\geq X_n \cdot Z_n \geq X_n(z_0 + \epsilon), \quad\quad X_n = x < 0\\
+\end{align*}
+
+Wlog, I will prove the case where $X_n \geq 0$, but the same reasoning applies to the case where $X_n < 0$.
+Fixing $\epsilon$, this gives:
+
+\begin{align*}
+    \limit{n}{\infty} P(X_n \cdot Z_n \leq a \big\lvert \abs{Z_n - z_0} \leq \epsilon) 
+                                                          &\leq \limit{n}{\infty} P(X_n (z_0 - \epsilon) \leq a   )\tag*{(by assumption \ref{asmp2})}\\ 
+                                                          &= \limit{n}{\infty} F_{X_n }(a/(z_0- \epsilon))        \tag*{(def. of CDF)}\\
+                                                          &= F_{X }(a/(z_0- \epsilon))\tag*{(by assumption \ref{asmp1})}\\  
+\end{align*}
+Note that we do not need to consider the case when $z_0 - \epsilon = 0$.
+This is because $\epsilon$ can be arbitrarily small by the definition of convergence in probability.
+We can therefore always assume $z_0 - \epsilon > 0$ since we can just limit our consideration to values of $\epsilon$ smaller than $z_0$.
+
+When combined with the other inequality, this gives:
+\begin{equation*}
+    F_{X}(a /(z_0 + \epsilon ))   \leq  \limit{n}{\infty} P(X_n + Z_n \leq a) \leq F_{X}(a /(z_0 - \epsilon ))\\
+\end{equation*}
+
+The rest of the proof is exactly the same as in part \ref{Sl_add}, so I will omit it.

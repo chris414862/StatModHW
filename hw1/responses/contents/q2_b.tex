@@ -1,0 +1,34 @@
+% !TEX root = ../*.tex
+
+\item Decide which estimator is better $\lambda$, $\bar{Y}_n$ or $s^2_n$
+
+    We have shown in class that both $\bar{Y}_n$ and $s^2_n$ are unbiased, so here we will calculate the variance.
+    \begin{enumerate}
+
+        \item \var{$\bar{Y}_n$}:
+            \begin{align*}
+                \var{\bar{Y}_n} &= \expec{\bar{Y}_n^2}- \expec{\bar{Y}_n}^2\\
+                                &= \frac{1}{n^2}\expec{\sum_{i=1}^n Y_i\sum_{j=1}^n Y_j}- \lambda^2\\
+                                &= \frac{1}{n^2}\sum_{i=1}^n\sum_{j=1}^n\expec{Y_i Y_j}- \lambda^2\\
+                                &= \frac{1}{n^2}\Big(\sum_{i=j}\expec{Y_i Y_j}+ \sum_{i\neq j}\expec{Y_i Y_j}\Big)- \lambda^2\\
+                                &= \frac{1}{n^2}\Big(\sum_{i=1}^n\expec{Y_i^2}+ \sum_{i\neq j}\expec{Y_i}\expec{ Y_j}\Big)- \lambda^2\tag*{(by independence)}\\
+                                &= \frac{1}{n^2}\Big(\sum_{i=1}^n(\var{Y_i}+\expec{Y_i}^2)+ n(n-1)\lambda^2\Big)- \lambda^2\\
+                                \tag*{($\expec{Y_i^2} =\var{Y_i} + \expec{Y_i}^2$, by def. of Var($\cdots$))}\\
+                                &= \frac{1}{n^2}\Big(n(\lambda+\lambda^2)+ n(n-1)\lambda^2\Big)- \lambda^2\\
+                                &= \frac{1}{n}\lambda+\frac{1}{n}\lambda^2+\lambda^2 - \frac{1}{n}\lambda^2- \lambda^2\\
+                                &= \frac{1}{n}\lambda
+            \end{align*}
+        \item \var{$s^2_n$}:
+
+            From slide 29 of lecture we know that: 
+                \begin{equation*}
+                    \var{s^2_n} = \frac{\mu_4}{n}
+                \end{equation*}
+            Online I found that $\mu_4$ for the Poisson distribution is $\lambda^4 + 7\lambda^3 + 6\lambda^2 + \lambda$ from taking the fourth derivative of the MGF of the Poisson evaluated at zero. 
+            This gives
+                \begin{equation*}
+                    \var{s^2_n} = \frac{\lambda^4 + 7\lambda^3 + 6\lambda^2 + \lambda}{n} \geq \frac{1}{n}\lambda = \var{\bar{Y}_n}
+                \end{equation*}
+                Therefore I would choose $\bar{Y}_n$ as $\hat{\lambda}$.
+
+    \end{enumerate}

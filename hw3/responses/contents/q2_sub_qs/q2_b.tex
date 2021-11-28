@@ -1,0 +1,16 @@
+\prompt{Show that the Negative Binomial belongs to exponential family distributions.}
+
+
+
+The Negative Binomial PDF can be manipulated in a similar manner as above, however we must assume that $r$ is known:
+\begin{align*}
+    {r+y-1 \choose y}\theta^y(1-\theta)^{r} &= {r+y-1 \choose y}(1-\theta)^{r}\exp(y\log(\theta)
+\end{align*}
+
+Since the Binomial is a single parameter family (is not typically considered a parameter) I can a let equation \ref{q2:EFD} have scalar quantities and let:
+\begin{align*}
+    h(k) &= {n \choose k}\\
+    g(\theta) &= (1-\theta)^{n}\\
+    u(k) &= k\\
+    \phi(k) &= \log\Big(\frac{\theta}{(1-\theta)}\Big)\\
+\end{align*}

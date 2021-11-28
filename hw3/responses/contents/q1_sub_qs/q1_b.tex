@@ -1,0 +1,32 @@
+\prompt{Show that $\expec{\xi({\vec{\theta}})}= \frac{\vec{y}_0}{\lambda} + c$ and 
+$\expec{\xi({\vec{\theta}})|\samp{\vec{y}}}= \frac{\vec{y}_0+n\vec{\bar{y}}}{\lambda+n}+c$ for some constanct $c$}
+
+Using the hint and the result from part a, we have:
+\begin{align*}
+    \expec{\xi({\vec{\theta}})} = \expec{\partiald{\psi(\theta)}{\vec{\theta}}} 
+    &= \expec{\partiald{\psi(\theta)}{\vec{\theta}}}\\
+    &= \expec{\frac{1}{\lambda}\Big(\vec{y}_0- \Big(\vec{y}_0-\lambda\partiald{\psi(\vec{\theta})}{\vec{\theta}}\Big)\Big)}\\
+    &= \expec{\frac{1}{\lambda}\Big(\vec{y}_0- 
+    \frac{\partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}{\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}\Big)}\\
+    &= \frac{1}{\lambda}\Big(\vec{y}_0- 
+    \expec{\frac{\partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}{\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}}\Big)\\
+    &= \frac{1}{\lambda}\Big(\vec{y}_0- 
+    \int{\frac{\partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}
+{\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}h(\vec{y}_0,\lambda)\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))d\vec{\theta}}\Big)\\
+    &= \frac{1}{\lambda}\Big(\vec{y}_0- 
+    h(\vec{y}_0,\lambda)\int{\partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}d\vec{\theta}\Big)\\
+    &= \frac{1}{\lambda}\vec{y}_0-\frac{h(\vec{y}_0,\lambda)}{\lambda}
+       \int{
+           \partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))
+       }d\vec{\theta}\\
+\end{align*}
+
+Since $\vec{y}\vert\vec{\theta}$ is distributed according to an exponential family distribution, $\expec{\vec{y}\vert\vec{\theta}} =\expec{\xi(\vec{\theta})}$ must exist.
+Therefore, $\int{\partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}d\vec{\theta}$ must converge.
+Thus, 
+\begin{align*}
+     \frac{1}{\lambda}\vec{y}_0- 
+\frac{h(\vec{y}_0,\lambda)}{\lambda}\int{\partiald{}{\vec{\theta}}\exp(\vec{\theta}\tp\vec{y}_0 - \lambda\psi(\vec{\theta}))}d\vec{\theta} = \frac{1}{\lambda}\vec{y}_0 + constant
+\end{align*}
+
+

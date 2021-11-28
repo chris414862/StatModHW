@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}
+
+\usepackage[shortlabels]{enumitem}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={180mm,257mm},
+ left=10mm,
+ top=10mm,
+ }
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xparse}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+
+% \usepackage{hyperref}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\newcommand{\limit}[2]{ \underset{#1\rightarrow #2}{\lim}\, }
+\newcommand{\convg}[1]{ \overset{#1}{\rightarrow} }
+\newcommand{\var}[1]{ \text{Var}(#1)}
+\newcommand{\cov}[2]{ \text{Cov}(#1, #2)}
+\newcommand{\expec}[1]{\mathbb{E}[#1]}
+\newcommand{\Exp}[1]{ \text{Exponential}(#1)}
+\newcommand{\Normal}[2]{ \mathcal{N}(#1, #2)}
+\newcommand{\Pois}[1]{ \text{Poisson}(#1)}
+\newcommand{\Poisf}[2]{ #2^{#1} \frac{e^{-#2}}{#1!}}
+\newcommand{\distiid}{ \overset{iid}{\sim}}
+\newcommand{\prompt}[1]{\textbf{\underline{Prompt}}: \textit{#1}}
+\newcommand*{\samp}[2][n]{#2_{1:#1}}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\begin{document}
+\title{Homework 1 Responses}
+\author{Chris Crabtree}
+\date{Sept. 30, 2021}
+
+{
+\let\clearpage\relax
+\maketitle
+}
+\input{contents/q1.tex}
+      
+\input{contents/q2.tex}
+
+\input{contents/q3.tex}
+
+\input{contents/q4.tex}
+
+\input{contents/q5.tex}
+
+\input{contents/q6.tex}
+
+\input{contents/q7.tex}
+
+\input{contents/q8.tex}
+
+
+\end{document}
+

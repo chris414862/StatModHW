@@ -1,0 +1,33 @@
+\prompt{Find the MLE for the parameters of the normal.}
+
+The log likelihood of $\Normal(\mu, \sigma^2)$ can trivially be shown to be:
+
+\begin{align*}
+    -n/2 \log(2\pi) - n\log(\sigma) - \frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2
+\end{align*}
+
+Starting with $\mu$ we only need to maximimize $\sum_{i=1}^n (x_i-\mu)^2$. 
+This can be obtained easily:
+\begin{align*}
+    \frac{d}{d\mu}\sum_{i=1}^n (x_i-\mu)^2 = -2\sum_{i=1}^n (x_i-\mu)\\
+\end{align*}
+Setting this equal to zero gives:
+\begin{align*}
+    -2\sum_{i=1}^n (x_i-\mu)= 0\\
+    \sum_{i=1}^n x_i= n\mu\\
+    \bar{x}= \mu\\
+\end{align*}
+
+Now for $sigma^2$ we only need to maximize $-n\log{\sigma} -  \frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2$.
+The derivative of this is:
+\begin{align*}
+    -n/\sigma - \frac{1}{2\sigma^3}\sum_{i=1}^n(x_i-\mu)^2
+\end{align*}
+Setting that equal to zero gives:
+\begin{align*}
+    -n/\sigma + \frac{1}{\sigma^3}\sum_{i=1}^n(x_i-\mu)^2 = 0\\
+    \sum_{i=1}^n (x_i-\mu)^2 = n\sigma^2\\
+    \sigma^2 = \tilde{s}^2
+\end{align*}
+
+

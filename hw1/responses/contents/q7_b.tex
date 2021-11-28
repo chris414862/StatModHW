@@ -1,0 +1,18 @@
+% !TEX root = ../*.tex
+\label{q7_CGF}Show that $\limit{\pi}{0}\limit{m}{\infty} K_{Bin}(t)$ implies $m\pi \rightarrow \lambda$, for some constant $\lambda > 0$. 
+\begin{align*}
+   \limit{\pi}{0}\limit{m}{\infty} K_{Bin}(t) &=\limit{\pi}{0}\limit{m}{\infty}  m\log(\pi e^t + 1-\pi)= m\log( 1 +\pi e^t -\pi)\\
+         &=\limit{\pi}{0}\limit{m}{\infty}\log\Big( (1 +\pi (e^t -1))^m\Big)
+\end{align*}
+Recall that $\limit{n}{\infty}(1+x/n)^n = e^x$.
+This gives:
+\begin{align*}
+    \limit{m}{\infty}\limit{\pi}{0}\log\Big( (1 +\pi (e^t -1))^m\Big) &= \limit{m}{\infty}\limit{\pi}{0}\log\Big( (1 +\frac{m\pi (e^t -1)}{m})^m\Big)\\
+                          &= \limit{m}{\infty}\limit{\pi}{0}\log\Big( (1 +\frac{\lambda (e^t -1)}{\lambda/\pi})^{(\lambda/\pi)}\Big) \tag*{(let $ \lambda = m\pi$)}\\
+                          &=\limit{m}{\infty}\log(e^{\lambda(e^t-1)}) \\
+                          &=\limit{m}{\infty}\lambda(e^t-1) \\
+                          &=\lambda(e^t-1) \\
+    \blacksquare
+\end{align*}
+
+

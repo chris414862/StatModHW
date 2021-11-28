@@ -1,0 +1,26 @@
+% !TEX root = ../*.tex
+Show that  for $R \sim Bin(\pi, m)$, $K_{Bin}(t)$ the cumulant generating function $\log(M_{Bin}(t))$ is $m\log(1-\pi +\pi e^t)$. 
+
+We will start by deriving the MGF of the Binomial distribution, \\${M_{Bin}(t) = (1-\pi +\pi e^t)^m}$.
+\begin{align*}
+    M_{Bin}(t) &= \expec{e^{Rt}} = \sum_{x=0}^m e^{xt}\cdot P(R=x)\\ 
+               &=\sum_{y=0}^m e^{xt} {m \choose x}\pi^x(1-\pi)^{m-x}\\
+                 &=\sum_{y=0}^m  {m \choose x} (e^t \pi)^x(1-\pi)^{m-x}\\
+\end{align*}
+Recall from the Binomial Theorem that:
+\begin{equation}
+    \label{bin_thm}
+    (z+y)^n = \sum_{k=0}^n{n \choose k}z^{k}y^{n-k} = \sum_{k=0}^n{n \choose k}z^{n-k}y^{k}
+\end{equation}
+By choosing $z := e^t \pi$, $y:= 1 - \pi$, $k:=x$, and $m:=n$, we have that:
+
+\begin{align*}
+    \sum_{y=0}^m  {m \choose x} (e^t \pi)^x(1-\pi)^{m-x} = (\pi e^t + 1-\pi)^m\\
+\end{align*}
+Thus, 
+\begin{align*}
+    K_{Bin}(t) = log(M_{bin}(t) =  m\log(\pi e^t + 1-\pi)\\
+    \blacksquare
+\end{align*}
+
+

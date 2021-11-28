@@ -1,0 +1,35 @@
+\section{}
+\prompt{Show that Jeffrey's priors satisfy the invariance principle}
+
+In Jeffrey's view, a prior is non-informative if the prior chosen for $p_{\psi}(\psi)$ is proportional to the pdf that appears with the transformation $p_{\theta}(\psi=g(\theta)) = p_\psi(\psi)$.
+The Jeffrey's prior for $p(\psi)$ would be $\big|I(\psi)\big|^{1/2}$ and the pdf of the transformation $p_{\theta}(\psi=g(\theta)) = p_\psi(\psi)$ is a well-known result if $g$ is monotone, i.e. $p_\psi(\psi)= p_\theta(g^{-1}(\psi))\big|\partiald{}{\psi}g^{-1}(\psi)\big|$.
+Therefore, I need to show that $p_{\theta}(\psi=g(\theta)) \propto \big|I(\psi)\big|^{1/2}$.
+Starting from the pdf of the transformation $p_{\theta}(\psi=g(\theta))$:
+\begin{align*}
+    p_{\theta}(\psi=g(\theta))&= p_\theta(g^{-1}(\psi))\big|\partiald{}{\psi}g^{-1}(\psi)\big|\\
+                             &=\big|\secpartiald{}{\theta}\log(p_\theta(y\big|\theta=g^{-1}(\psi)))\big|^{1/2}\big|\partiald{}{\psi}g^{-1}(\psi)\big|\\
+                              \Rightarrow\\
+p_{\theta}(\psi=g(\theta))^2 &= \big|\secpartiald{}{\theta}\log(p_\theta(y\big|\theta=g^{-1}(\psi)))\big|\big|\partiald{}{\psi}g^{-1}(\psi)\big|^2\\
+                             &= I(g^{-1}(\psi))\big|\partiald{}{\psi}g^{-1}(\psi)\big|^2\\
+\end{align*}
+From here I need to use a special property of Fisher information.
+This property relates the information of paramater to the fisher information of a function of a parameter.
+It states that if $\alpha$ and $\beta = h(\alpha)$ are scalar parameters and if $h$ is a continuously differentiable function, then the Fisher information of the two parameterizations are related by the following equation:
+\begin{align*}
+    I(\alpha) &= I(h(\alpha))(\frac{d }{d\alpha}h(\alpha))^2\\
+\end{align*}
+This is tricky for me to prove, but it seems to be a well known result.
+Using this property and letting $h = g^{-1}$ I get:
+\begin{align*}
+     p_{\theta}(\psi=g(\theta))^2 &= I(g^{-1}(\psi))\big|\partiald{}{\psi}g^{-1}(\psi)\big|^2\\
+                                &= I(\psi)^2\\
+                              \Rightarrow\\
+     p_{\theta}(\psi=g(\theta)) &= I(\psi)^{1/2}\\
+\end{align*}
+Which is the Jeffrey's prior for $p(\psi)$ that I needed to prove.
+% there is a property of Fisher information that states that under a reparameterization $h: \alpha \rightarrow \beta$, 
+%
+% \begin{align*}
+%                               &\propto \big|\secpartiald{}{\psi}\log(p_\psi(y\big|\psi))\big|^{1/2}
+% \end{align*}
+

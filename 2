@@ -1,0 +1,28 @@
+\prompt{Given $\samp{Y} = Y_1, Y_2, ..., Y_n \sim \Normal{\mu}{\sigma^2}$ with known $\mu$, compute the Jeffrey's prior for $\sigma^2$.}
+
+First, the log-likelihood for $Y$ is:
+\begin{align*}
+    \log(p(Y|\sigma^2)) &= \log(\frac{1}{\sqrt{2\pi}\sigma}^n \exp(\frac{1}{2\sigma^2}\sum_{i=1}^n(\mu-Y_i)^2))\\
+                        &= \frac{n}{2}\log(2\pi\sigma^2) + \frac{1}{2\sigma^2}\sum_{i=1}^n(\mu-Y_i)^2\\
+\end{align*}
+
+
+Jeffrey's prior for $\theta$ is proportional to:
+\begin{align}
+    \label{q6:jeff_base}
+    \Big| \fishinf{\theta} \Big|^{1/2} &= \Big|\expec{\partiald{}{(\theta\theta^T)}\loglike{\theta}}\Big|^{1/2}\nonumber\\
+                                       &= \Big|\expec{\partiald{}{(\theta\theta^T)}\log(p(Y|\theta))}\Big|^{1/2}\\
+\end{align}
+
+Since $\mu$ is known in this problem, $\theta = \sigma^2$ is a scalar. 
+This means I can write equation \ref{q6:jeff_base} as:
+\begin{align}
+    \label{q6:jeff_scalar}
+    \Big| \fishinf{\sigma^2} \Big|^{1/2} &= \Big|\expec{\partiald{}{(\sigma^2)}\log(p(Y|\sigma^2))}\Big|^{1/2}\\
+\end{align}
+
+To calculate $\fishinf{\sigma^2}$ I will use a well known result that states if $Y$ is distributed according to an exponential family distribution, then:
+\begin{align*}
+    \expec{\secpartiald{}{\theta}p(Y \vert \theta)} = -\expec{(\partiald{}{\theta}p(Y \vert \theta))^2}
+\end{align*}
+

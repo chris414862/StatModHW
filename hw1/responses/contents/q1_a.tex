@@ -1,0 +1,71 @@
+% !TEX root = ../*.tex
+\\
+I must show that,
+\begin{equation*}
+    \limit{n}{\infty} F_{X_n + Z_n}(a) = F_{X + z_0}(a).
+\end{equation*}
+
+By definition,
+
+\begin{equation*}
+F_{X_n + Z_n}(a) = P(X_n + Z_n \leq a)
+\end{equation*}
+
+and from the Law of Total Probability we have that, 
+\begin{align*}
+    P(X_n + Z_n \leq a) &= \quad\;\, P(X_n + Z_n \leq a \big\lvert  \abs{Z_n - z_0} \leq \epsilon)P(\abs{Z_n - z_0} \leq \epsilon) \\
+                     &{\quad\quad+} P(X_n + Z_n \leq a \big\lvert  \abs{Z_n - z_0} > \epsilon)P(\abs{Z_n - z_0} > \epsilon).\\
+\end{align*}
+Taking the limit we have,
+\begin{align*}
+ \limit{n}{\infty} P(X_n + Z_n \leq a) &= \quad\;\, P(X_n + Z_n \leq a \big\lvert  \abs{Z_n - z_0} \leq \epsilon)\cdot 1 \\
+                                                       &{\quad\quad+} P(X_n + Z_n \leq a \big\lvert  \abs{Z_n - z_0} > \epsilon)\cdot 0 \tag*{(by assumption \ref{asmp1})}\\
+                                                       &= \quad\;\, P(X_n + Z_n \leq a \big\lvert  \abs{Z_n - z_0} \leq \epsilon)
+\end{align*}
+Note that,    
+\begin{align*}
+    \abs{Z_n - z_0} \leq \epsilon &\equiv z_0 - \epsilon \leq Z_n \leq z_0 + \epsilon \\
+                               &\Rightarrow \\
+    X_n + z_0 - \epsilon &\leq X_n +Z_n \leq X_n + z_0 + \epsilon\\
+\end{align*}
+Thus,
+\begin{align*}
+    \limit{n}{\infty} P(X_n + Z_n \leq a \big\lvert \abs{Z_n - z_0} \leq \epsilon) 
+                                                          &\leq P(X_n + z_0 - \epsilon \leq a   )\tag*{(by assumption \ref{asmp2})}\\ 
+                                                          &\leq \limit{n}{\infty}  P(X_n \leq a + \epsilon - z_0  )\\
+                                                          &= \limit{n}{\infty} F_{X_n}(a + \epsilon- z_0)        \tag*{(def. of CDF)}\\
+                                                          &= F_{X}(a + \epsilon- z_0)   \tag*{(by assumption \ref{asmp1})} 
+\end{align*}
+The first inequality is true because the $-\epsilon$ shifts the distribution of $X_n - z_0$ away from $a$, which means more probability mass occurs before $a$.
+By the same reasoning, we have that, 
+\begin{align*}
+        F_{X}(a - \epsilon - z_0) \leq  \limit{n}{\infty} P(X_n + Z_n \leq a)  
+\end{align*}
+giving
+\begin{equation*}
+   F_{X}(a - \epsilon - z_0)   \leq  \limit{n}{\infty} P(X_n + Z_n \leq a) \leq F_{X}(a + \epsilon - z_0)\\
+\end{equation*}
+Therefore, in the limit as $\epsilon$ approaches $0$ we have that,
+\begin{gather*}
+   \limit{\epsilon}{0} F_{X}(a - \epsilon - z_0) \leq  \limit{n}{\infty} P(X_n + Z_n \leq a) \leq \limit{\epsilon}{0} F_{X}(a + \epsilon- z_0)\\
+   \equiv\\
+   F_{X}(a - z_0) \leq \limit{n}{\infty} P(X_n + Z_n \leq a) \leq F_{X}(a - z_0)\\
+\end{gather*}
+Thus we have:
+\begin{equation}
+    \label{q1_a_main_eq}
+            \limit{n}{\infty} P(X_n + Z_n \leq a) =F_{X}(a-z_0)
+\end{equation}
+Putting together all the peices, we get:
+\begin{align*}
+    \limit{n}{\infty} F_{X_n + Z_n}( a) &= \limit{n}{\infty} P(X_n + Z_n \leq a)\\
+                                        &=F_{X}(a-z_0)  \tag*{(by equation \ref{q1_a_main_eq})}\\
+                                        &=P(X < a - z_0)\\ 
+                                        &= P(X + z_0 <a )\\
+                                        &=F_{X+ z_0}(a)\\
+    \blacksquare
+\end{align*}
+
+
+
+

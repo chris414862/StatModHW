@@ -1,0 +1,19 @@
+\prompt{Show that if $\vec{y}\sim EFD(\vec{\theta})$ with EFD being an Exponential Family Distribution, 
+then \begin{equation*}\expec{\vec{y}\vert\vec{\theta}} = \partiald{\psi(\vec{\theta})}{\vec{\theta}}\end{equation*}}
+
+For notational convenience I will write $\vec{y\vert\theta}$ as just $\vec{y}$.
+\begin{align*}
+    1 &= \int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y}-\psi(\vec{\theta}))d\vec{y} \tag*{(exp. family dist'n)}\\
+    \partiald{}{\vec{\theta}}1 &= \partiald{}{\vec{\theta}}\int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y}-\psi(\vec{\theta}))d\vec{y} \\
+    0 &= \partiald{}{\vec{\theta}}\exp(-\psi(\vec{\theta}))\int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y})d\vec{y}\\
+    0 &= \partiald{}{\vec{\theta}}\Big[{\exp(-\psi(\vec{\theta}))}\Big]\int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y})d\vec{y}\\
+      &{\quad\quad+}{\exp(-\psi(\vec{\theta}))}\partiald{}{\vec{\theta}}\Big[\int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y})d\vec{y}\Big]\tag*{(product rule)}\\
+    0 &= \partiald{}{\vec{\theta}}\Big[{\exp(-\psi(\vec{\theta}))}\Big]\int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y})d\vec{y}\\
+      &{\quad\quad+}{\exp(-\psi(\vec{\theta}))}\int_{\vec{y}}\partiald{}{\vec{\theta}}\Big[ h(\vec{y})\exp(\vec{\theta}\tp\vec{y})\Big]d\vec{y}
+                                                                                            \tag*{(Leibnitz rule and limits const. w.r.t. $\vec{\theta}$)}\\
+    0 &= -\partiald{}{\vec{\theta}}{\Big[\psi(\vec{\theta})\Big]}\exp(-\psi(\vec{\theta}))\int_{\vec{y}} h(\vec{y})\exp(\vec{\theta}\tp\vec{y})d\vec{y}\\
+      &{\quad\quad+}{\exp(-\psi(\vec{\theta}))}\int_{\vec{y}}h(\vec{y})\exp(\vec{\theta}\tp\vec{y})\vec{y}d\vec{y}\\
+    0 &= -\partiald{}{\vec{\theta}}{\Big[\psi(\vec{\theta})\Big]}\cdot 1 + \expec{\vec{y}}\\
+    \expec{\vec{y}} &= \partiald{}{\vec{\theta}}{\Big[\psi(\vec{\theta})\Big]} \\
+    \tag*{$\blacksquare$\hspace{5cm}}
+\end{align*}

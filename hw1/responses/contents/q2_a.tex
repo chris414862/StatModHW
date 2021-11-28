@@ -1,0 +1,29 @@
+% !TEX root = ../*.tex
+
+\item Prove that if $Y \sim  \Pois{\lambda} \rightarrow \expec{Y}  =  \lambda \text{ and }  \var{Y} = \lambda$
+
+    The first part can be shown directly by the definition of $\expec{Y}$:
+    \begin{align*}
+        \expec{Y} &= \sum_{-\infty}^\infty y\Poisf{y}{\lambda} \tag*{(by definition)}\\
+                  &= \sum_{y=0}^\infty y \Poisf{y}{\lambda} \tag*{(Poisson region of interest)}\\
+                  &= e^{-\lambda}\sum_{y=0}^\infty \frac{y \lambda^y}{y!} \tag*{(Algebra)}\\
+                  &= e^{-\lambda}\lambda \sum_{y=1}^\infty \frac{\lambda^{y-1}}{(y-1)!} \tag*{(Algebra)}\\
+                  &= e^{-\lambda}\lambda \sum_{k=0}^\infty \frac{\lambda^k}{k!} \tag*{(Substitute \(k=y-1\))}\\
+                  &= e^{-\lambda}\lambda e^\lambda  \tag*{(Taylor expansion for \(e^x)\)}\\
+                  &= \lambda 
+    \end{align*}
+
+    Similarly, for $\var{Y}$ we have:
+    \begin{align*}
+        \var{Y} &= \expec{Y^2} - \expec{Y}^2   \tag*{(by definition)}\\
+                &= \sum_{y=0}^\infty y^2\Poisf{y}{\lambda} - \lambda^2\\
+                &= e^{-\lambda}\lambda \sum_{y=1}^\infty y\frac{\lambda^{y-1}}{(y-1)!}- \lambda^2 \tag*{(Above steps)}\\
+                &= e^{-\lambda}\lambda \sum_{y=1}^\infty ((y-1)+1)\frac{\lambda^{y-1}}{(y-1)!}- \lambda^2 \\
+                &= e^{-\lambda}\lambda \sum_{y=1}^\infty \Big((y-1)\frac{\lambda^{y-1}}{(y-1)!} + \frac{\lambda^{y-1}}{(y-1)!}\Big)- \lambda^2 \\
+                &= e^{-\lambda}\lambda \Big(\sum_{y=1}^\infty (y-1)\frac{\lambda^{y-1}}{(y-1)!} + \sum_{y=1}^\infty \frac{\lambda^{y-1}}{(y-1)!}\Big)- \lambda^2 \\
+                &= e^{-\lambda}\lambda \Big(\sum_{y=1}^\infty (y-1)\frac{\lambda^{y-1}}{(y-1)!} +e^\lambda \Big)- \lambda^2 \tag*{(Same as above)}\\
+                &= e^{-\lambda}\lambda \Big(\lambda \sum_{y=2}^\infty \frac{\lambda^{y-2}}{(y-2)!} +e^\lambda \Big)- \lambda^2 \\
+                &= e^{-\lambda}\lambda \Big(\lambda e^\lambda +e^\lambda \Big)- \lambda^2 \\
+                &= \lambda^2 + \lambda - \lambda^2 \\
+                &=  \lambda  \\
+    \end{align*}

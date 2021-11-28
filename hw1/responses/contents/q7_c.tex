@@ -1,0 +1,12 @@
+% !TEX root = ../*.tex
+Show that $\limit{\pi}{0}\limit{m}{\infty} K_{Bin}(t)\convg{D} Pois(\lambda)$
+
+We showed in part \ref{q7_CGF} that $\limit{\pi}{0}\limit{m}{\infty} K_{Bin}(t) = \lambda(e^t-1)$.
+The MGF of the Binomial is just $e^{K_{Bin}(t)}$. The same proof given above holds for $\limit{\pi}{0}\limit{m}{\infty} e^{K_{Bin}(t)}$.
+This means that in the limits stated, the MGF of the binomial converges to $e^{\lambda(e^t-1)}$. 
+This is exactly the MGF of the Poisson distribution. 
+Thus, by the Uniquess Theorem of MGFs:
+\begin{equation*}
+    \limit{\pi}{0}\limit{m}{\infty} P(R=r) \convg{D} \frac{\lambda^{r}}{r!}e^{-\lambda} = \text{Poisson}(m\pi=\lambda)
+\end{equation*}
+

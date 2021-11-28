@@ -1,0 +1,44 @@
+\prompt{Given $\samp{y} = y_1, y_2, ..., y_n \sim \Normal{\mu}{\sigma^2}$ with known $\mu$, compute the Jeffrey's prior for $\sigma^2$.}
+
+First, the log-likelihood for $y$ is:
+\begin{align}
+    \label{q6:llike}
+    \log(p(y|\sigma^2)) &= \log(\frac{1}{\sqrt{2\pi}\sigma}^n \exp(-\frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-\mu)^2))\nonumber\\
+                        &= -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-\mu)^2
+\end{align}
+
+
+Jeffrey's prior for $\theta$ is proportional to:
+\begin{align}
+    \label{q6:jeff_base}
+\Big| \fishinf{\theta} \Big|^{1/2} &= \Big|\expec[y]{\secpartiald{}{(\theta\theta^T)}\loglike{\theta}}\Big|^{1/2}\nonumber\\
+                                   &= \Big|\expec[y]{\secpartiald{}{(\theta\theta^T)}\log(p(y|\theta))}\Big|^{1/2}
+\end{align}
+
+Since $\mu$ is known in this problem, $\theta = \sigma^2$ is a scalar. 
+This means I can write equation \ref{q6:jeff_base} as:
+\begin{align}
+    \label{q6:jeff_scalar}
+    \Big| \fishinf{\sigma^2} \Big|^{1/2} &= \Big|\expec[y]{\secpartiald{}{(\sigma^2)}\log(p(y|\sigma^2))}\Big|^{1/2}
+\end{align}
+
+% To calculate $\fishinf{\sigma^2}$ I will use a well known result that states if $y$ is distributed according to an exponential family distribution, then:
+% \begin{align}
+%     \label{q6:simp_fish}
+%     \expec{\secpartiald{}{\theta}p(y \vert \theta)} = -\expec[y]{(\partiald{}{\theta}p(y \vert \theta))^2}
+% \end{align}
+
+Now I plug the log-likelihood from equation \ref{q6:llike}  into equation \ref{q6:jeff_scalar} to obtain:
+\begin{align*}
+    \Big| \fishinf{\sigma^2} \Big|^{1/2} &= \Big|\expec[y]{\secpartiald{}{(\sigma^2)}[-\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n(y_i-\mu)^2]}\Big|^{1/2}\\
+                                         &= \Big|\expec[y]{\partiald{}{(\sigma^2)}[-\frac{n}{2\sigma^2}+ \frac{1}{2(\sigma^2)^2}\sum_{i=1}^n(y_i-\mu)^2]}\Big|^{1/2}\\
+                                         &= \Big|\expec[y]{\frac{n}{2(\sigma^2)^2}- \frac{1}{(\sigma^2)^3}\sum_{i=1}^n(y_i-\mu)^2}\Big|^{1/2}\\
+                                         &= \Big|\frac{n}{2}\expec[y]{\frac{1}{(\sigma^2)^2}}- \frac{1}{(\sigma^2)^3}\expec[y]{\sum_{i=1}^n(y_i-\mu)^2}\Big|^{1/2}\\
+                                         &= \Big|\frac{n}{2(\sigma^2)^2} - \frac{(n-1)\sigma^2}{(\sigma^2)^3}\Big|^{1/2}\\
+                                         &= \Big|\frac{n}{2(\sigma^2)^2} - \frac{(n-1)}{(\sigma^2)^2}\Big|^{1/2}\\
+                                         &= \Big|\frac{n-2n+2}{2(\sigma^2)^2} \Big|^{1/2}\\
+                                         &= \Big|\frac{-(n+1)}{2}\frac{1}{(\sigma^2)^2} \Big|^{1/2}\\
+                                         &\propto \frac{1}{\sigma^2}
+\end{align*}
+This will not have a finite integral so this is an improper prior.
+

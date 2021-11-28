@@ -1,0 +1,6 @@
+It seemed that the location only models produced more reliable results. 
+Allowing the variance parameters to update allowed the excess centroids to increase the log-likelihood arbitrarily by decreasing the variance to zero.
+This is why I limited the minimum $\sigma^2$'s.
+
+It also appeared that initialization played a large role in the goodness of fit. 
+The resulting mixture pdf's could vary substantially on repeated runs.

@@ -1,0 +1,35 @@
+Normal problems
+\begin{enumerate}
+\item If $Z \sim $ Normal(0, 1), derive the density of $Y = Z^2$.
+    We can derive the density of $Y$ using the CDF technique for random variable transformations.
+    \begin{align*}
+        F_Y(y) &= P(Y \leq y)\\
+               &= P(X^2 \leq y)\\
+               &= P( |X| \leq \sqrt{y})\\
+               &= P(-\sqrt{y} \leq X \leq \sqrt{y})\\
+               &= F_X(\sqrt{y})-F_X(-\sqrt{y})\\
+    \end{align*}
+    Now we just need to differentiate the CDF to get the PDF.
+    \begin{align*}
+        F_Y'(y) &= \frac{d}{dy}({F_X(\sqrt{y})-F_X(-\sqrt{y})})\\
+                &= \frac{d}{dy}{F_X(\sqrt{y})-\frac{d}{dy}F_X(-\sqrt{y})}\\
+                &= \frac{f_X(\sqrt{y})}{2\sqrt{y}}+\frac{f_X(-\sqrt{y})}{2\sqrt{y}}\\
+                &= \frac{1}{2\sqrt{y2\pi}}e^{-\frac{1}{2}(\sqrt{y})^2}+\frac{1}{2\sqrt{y2\pi}}e^{-\frac{1}{2}(-\sqrt{y})^2}\\
+                &= \frac{1}{2\sqrt{y2\pi}}e^{-\frac{y}{2}}+\frac{1}{2\sqrt{y2\pi}}e^{-\frac{y}{2}}\\
+                &= \frac{1}{\sqrt{y2\pi}}e^{-\frac{y}{2}}\\
+    \end{align*}
+
+    This is a chi-squared distribution
+
+\item Show that $Y$ is uncorrelated with $Z$.
+
+    To do this we will look at $\cov{Y}{Z}$ which is the numerator of the correlation calculation.
+
+    \begin{align*}
+        \cov{Y}{Z} &= \expec{YZ} - \expec{Y}\expec{Z}\\
+                   &= \expec{YZ} - 0\tag*{($\expec{Z}= 0$)}\\
+                   &= \expec{Z^3} - 0\tag*{($\expec{Z}= 0$)}\\
+                   &= 0 - 0\tag*{(odd moments of the normal are 0)}\\
+    \end{align*}
+    Since $\cov{Y}{Z}$ the correlation is also zero.
+\end{enumerate}

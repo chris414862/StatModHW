@@ -1,0 +1,23 @@
+\prompt{Show that the minimal sufficient statistic (MSS) for $\samp{Y}= {Y_1, Y_2, ..., Y_n \distiid \Normal{\mu}{c\mu^2}}$ is the same MSS as for $\Normal{\mu}{\sigma^2}$.}
+
+I will use the common strategy of examining the ratio of the likelihoods of two separate statistics to find the MSS.
+
+Let $\samp[m]{Z}$ be sampled from the same distribution as $\samp{Y}$.
+Then we note that in the ratio $\samp{Y}/\samp[m]{Z}$ the normalizing constancts will cancel, leaving the ratio of exponentials.
+This gives
+\begin{align*}
+    \exp \Big(\frac{\sum_{i=1}^n(Y_i - \mu)^2 - \sum_{k=1}^m(Z_k - \mu)^2}{2c\mu^2}\Big)
+\end{align*}
+If we expand the squared binomials, clearly the $\mu^2$s will cancel, but we can also combine the cross terms giving:
+
+\begin{align}
+    \label{mss_main_eq}
+    \exp \Big(\frac{\sum_{i=1}^n Y_i^2 - \sum_{k=1}^m Z_k^2  + 2\mu(\sum_{k=1}^m Z_k +\sum_{i=1}^n Y_i)}{2c\mu^2}\Big)
+\end{align}
+
+Note that equation \ref{mss_main_eq} \textbf{this would be the same as for } $\Normal{\mu}{\sigma^2}$, but swapping the second parameter.
+
+From equation \ref{mss_main_eq} it is clear that dependence on the $\mu$ and $c\mu^2$ is eliminated \textit{iff} $\sum_{i=1}^n Y_i^2 = \sum_{k=1}^m Z_k^2$ and $\sum_{i=1}^n Y_i = \sum_{k=1}^m Z_k$.
+Furthermore, since the manipulations to get to equation \ref{mss_main_eq} would be the same as for $\Normal{\mu}{\sigma^2}$, the MSSs are the same.
+
+

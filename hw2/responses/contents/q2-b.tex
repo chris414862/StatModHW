@@ -1,0 +1,26 @@
+\prompt{Find the MLE for $\mu$.}
+
+To obtain the MLE we will first write $\mathcal{L}(\theta)$:
+\begin{align*}
+    \mathcal{L}(\theta) &= \log(L(\theta))\\
+                        &=\log\Big(\prod_{i=1}^n\frac{1}{\sqrt{2\pi c}\mu}\exp\Big(\frac{(x-m)^2}{2c\mu^2}\Big)\Big)\\
+                        &=-\log (\sqrt{2\pi c}\mu) + \sum_{i=1}^n\frac{(x_i - \mu)^2}{2c\mu^2}\\
+                        &=-\log (\sqrt{2\pi c}\mu) + \sum_{i=1}^n\frac{x_i^2 - x_i\mu + \mu^2}{2c\mu^2}\\
+                        &=-\log (\sqrt{2\pi c}\mu) + \sum_{i=1}^n\frac{x_i^2}{2c\mu^2} -\frac{\sum_{i=1}^n x_i\mu}{2c\mu^2} +\frac{\sum_{i=1}^n \mu^2}{2c\mu^2}\\
+                        &=-\log (\sqrt{2\pi c}\mu) + \frac{1}{\mu^2}\sum_{i=1}^n\frac{x_i^2}{2c} -\frac{1}{\mu}\frac{\sum_{i=1}^n x_i}{2c} +\frac{n}{2c}\\
+\end{align*}
+Taking the derivative of the above expression gives:
+\begin{align*}
+    \frac{d }{d \mu} \mathcal{L}(\theta)&=-\frac{1}{\mu} - \frac{1}{\mu^3}\frac{\sum_{i=1}^nx_i^2}{c} +\frac{1}{\mu^2}\frac{\sum_{i=1}^n x_i}{2c} \\
+\end{align*}
+
+And if we set that equal to zero we get:
+
+\begin{align*}
+      &-\frac{1}{\mu} - \frac{1}{\mu^3}\frac{\sum_{i=1}^nx_i^2}{c} +\frac{1}{\mu^2}\frac{\sum_{i=1}^n x_i}{2c}= 0\\
+    \Rightarrow&-\mu^2  + \mu\frac{\sum_{i=1}^n x_i}{2c} - \frac{\sum_{i=1}^n x_i^2}{c}= 0\\
+    \Rightarrow&-\mu^2  + \mu\frac{n\bar{x}}{2c} - \frac{n (\tilde{s}^2-\bar{x}^2)} {c}= 0\\
+\end{align*}
+
+I tried using the quadratic formula for this, but unfortunately I got an ugly expression that did not seem correct.
+

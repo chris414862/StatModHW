@@ -1,0 +1,128 @@
+\prompt{Find the observed information matrix for $\samp{y} \distiid \text{Normal}(\mu, \sigma^2)$.}
+
+From the lecture notes, the observed information is defined as:
+\begin{tcolorbox}[width=.5\linewidth,center, halign=flush center]
+    $J(\theta) = -\frac{\partial^2 \mathcal{L}(\theta)}{\partial \theta \partial \theta^\intercal}$
+    with $\mathcal{L} = \log(L(\theta))$.
+\end{tcolorbox}
+
+For this problem, $\log(L(\theta))$ can be written as: 
+\begin{align}
+    \label{log_likelihood}
+    \log(L(\theta)) &= \log(\prod_{i=1}^n\frac{1}{\sqrt{2\pi}\sigma}\exp\Big(\frac{-1}{2}\Big(\frac{y_i - \mu}{2\sigma} \Big)^2\Big) )  \nonumber\\
+                    &= \log(\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n \exp\Big(\frac{-1}{2}\sum_{i=1}^n\Big( \frac{y_i - \mu}{\sigma}\Big)^2 \Big) )
+\end{align}
+where $\theta^\intercal$ is $[ \mu, \sigma^2]$.
+
+First we will find the first derivative w.r.t. $\theta$.
+
+\begin{align*}
+    \frac{\partial \log(L(\theta))}{\partial \theta} = 
+    \begin{bmatrix}
+        \frac{\partial \log(L(\theta))}{\partial \mu} \\ 
+        \frac{\partial \log(L(\theta))}{\partial \sigma^2}
+    \end{bmatrix}
+\end{align*}
+Starting with $\frac{\partial}{\partial\mu}$ we have:
+\begin{align*}
+    \frac{\partial \log(L(\theta))}{\partial \mu} 
+    &= \frac{1}{L(\theta)}\frac{\partial}{\partial \mu}\Big[\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n \exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)\Big]\\ 
+    &= \frac{1}{L(\theta)}\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n \exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)
+    \frac{\partial}{\partial \mu}\frac{-1}{2}\sum_{i=1}^n\Big(\frac{y_i - \mu}{\sigma}\Big)^2\\ 
+    &=\frac{1}{L(\theta)}L(\theta)\frac{\partial}{\partial \mu}\frac{-1}{2}\sum_{i=1}^n\Big(\frac{y_i - \mu}{\sigma}\Big)^2 \\
+    &=\frac{\partial}{\partial \mu}\frac{-1}{2\sigma^2}\sum_{i=1}^n\big((y_i - \bar{y})^2+(\bar{y}-\mu)^2\big) \\
+    &=\frac{-1}{2\sigma^2}\frac{\partial}{\partial \mu}n(\bar{y}-\mu)^2 \\
+    &=\frac{n(\bar{y}-\mu)}{\sigma^2} \\
+\end{align*}
+
+For $\frac{\partial}{\partial\sigma^2}$ we will use the the product rule for derivatives:
+\begin{align}
+    \label{product_rule}
+    \frac{\partial \log(L(\theta))}{\partial \sigma^2} 
+    &= \frac{1}{L(\theta)}\frac{\partial}{\partial \sigma^2}\Big[\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n \exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)\Big]\nonumber\\ 
+    &=\frac{1}{L(\theta)}\Big(\frac{\partial}{\partial \sigma^2}\Big[\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n\Big] 
+                                                                \exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big) \nonumber\\
+    &\qquad\quad+
+                                \Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n 
+                            \frac{\partial}{\partial \sigma^2}\Big[\exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)\Big]\Big)
+\end{align}
+For space efficiency, I will solve $\frac{\partial}{\partial \sigma^2}\Big[\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n\Big]$ and 
+                            $\frac{\partial}{\partial \sigma^2}\Big[\exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)\Big]\Big)$
+                            separately.
+
+Solving $\frac{\partial}{\partial \sigma^2}\Big[\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n\Big]$, we have:
+
+\begin{align}
+    \label{product_left}
+    \frac{\partial}{\partial \sigma^2}\Big[\Big(\frac{1}{\sqrt{2\pi}\sigma}\Big)^n\Big]
+        &=\frac{\partial}{\partial \sigma^2}[(\sqrt{2\pi}\sigma)^{-n}]\nonumber\\
+        &= -n(\sqrt{2\pi}\sigma)^{-n-1}\frac{\partial}{\partial \sigma^2}[\sqrt{2\pi}\sigma]\nonumber\\
+        &= -n(\sqrt{2\pi}\sigma)^{-n-1}\sqrt{2\pi}\frac{\partial}{\partial \sigma^2}[\sqrt{\sigma^2}]\nonumber\\
+        &= -n(\sqrt{2\pi}\sigma)^{-n-1}\sqrt{2\pi}\frac{1}{2}(\sigma^2)^{-1/2}\nonumber\\
+        &= -n(\sqrt{2\pi}\sigma)^{-n-1}\sqrt{2\pi}\frac{1}{2\sigma}\nonumber\\
+        &=-n(\sqrt{2\pi}\sigma)^{-n}\frac{1}{\sqrt{2\pi}\sigma}\sqrt{2\pi}\frac{1}{2\sigma}\nonumber\\
+        &=\frac{-n}{2\sigma^2}\Big(\frac{1}{\sqrt{2\pi}\sigma^2}\Big)^{n}
+\end{align}
+Solving $\frac{\partial}{\partial \sigma^2}\Big[\exp\Big(\frac{1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)\Big]\Big)$ we have:
+
+\begin{align}
+    \label{product_right}
+    \frac{\partial}{\partial \sigma^2}\Big[\exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)\Big]
+    &= \exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)
+    \frac{\partial}{\partial \sigma^2}\Big[\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big]\nonumber\\
+    &=\exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)
+    \frac{-1}{2}\frac{\partial}{\partial \sigma^2}\Big[\frac{1}{\sigma^2}\Big]\sum_{i=1}^n (y_i - \mu)^2 \nonumber\\
+    &=\exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)
+    \Big(\frac{\sum_{i=1}^n (y_i - \mu)^2 }{2(\sigma^2)^2}\Big)
+\end{align}
+
+Plugging equations \ref{product_left} and \ref{product_right} into equation \ref{product_rule} we have:
+
+\begin{align}
+    \frac{\partial \log(L(\theta))}{\partial \sigma^2} 
+    &= \frac{1}{L(\theta)}\Big(\Big[\frac{-n}{2\sigma^2}\Big(\frac{1}{\sqrt{2\pi}\sigma^2}\Big)^{n}\Big]
+    \exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big) \nonumber\nonumber\\
+    &\quad+
+    \Big(\frac{1}{\sqrt{2\pi}\sigma^2}\Big)^n 
+    \Big[\exp\Big(\frac{-1}{2}\sum_{i=1}^n \Big(\frac{y_i - \mu}{\sigma}\Big)^2 \Big)
+\Big(\frac{\sum_{i=1}^n (y_i - \mu)^2 }{2(\sigma^2)^2}\Big)\Big]\Big)\nonumber\\
+    &=\frac{1}{L(\theta)} L(\theta)\Big(\frac{-n}{2\sigma^2} -\frac{\sum_{i=1}^n (y_i - \mu)^2 }{2(\sigma^2)^2}\Big)\nonumber\\
+    &=\frac{-n}{2\sigma^2} +\frac{\sum_{i=1}^n (y_i - \mu)^2 }{2(\sigma^2)^2}
+\end{align}
+
+(Finally!) This gives
+
+\begin{align*}
+    \frac{\partial \log(L(\theta))}{\partial \theta} = 
+    \begin{bmatrix}
+        \frac{\partial \log(L(\theta))}{\partial \mu} \\ 
+        \frac{\partial \log(L(\theta))}{\partial \sigma^2}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        \frac{n(\bar{y}-\mu)}{\sigma^2} \\
+        \frac{-n}{2\sigma^2} +\frac{\sum_{i=1}^n (y_i - \mu)^2 }{2(\sigma^2)^2}
+    \end{bmatrix}
+\end{align*}
+
+From here finding the second partial derivatives is fairly trivial.
+You simply need to take derivatives w.r.t the $\mu$ and $\sigma^2$ separately for each element of the above vector.
+Doing so gives the full solution:
+\begin{align}
+    J(\theta) = -\frac{\partial^2 \log(L(\theta))}{\partial \theta \partial \theta^\intercal} 
+    &= 
+    -\begin{bmatrix}
+        \frac{-n\bar{y}}{\sigma^2} & \frac{-n(\bar{y}-\mu)}{(\sigma^2)^2}\nonumber\\
+        \frac{-n(\bar{y}-\mu)}{(\sigma^2)^2} & \frac{n}{2(\sigma^2)^2} -\frac{\sum_{i=1}^n (y_i - \mu)^2 }{(\sigma^2)^3}\Big)
+    \end{bmatrix}
+    \\
+    &= 
+    \begin{bmatrix}
+        \frac{n\bar{y}}{\sigma^2} & \frac{n(\bar{y}-\mu)}{(\sigma^2)^2}\nonumber\\
+    \frac{n(\bar{y}-\mu)}{(\sigma^2)^2} & \frac{-n}{2(\sigma^2)^2} +\frac{\sum_{i=1}^n (y_i - \mu)^2 }{(\sigma^2)^3}\Big)
+    \end{bmatrix}
+\end{align}
+
+
+
+
