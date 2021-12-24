@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+
+\usepackage[shortlabels]{enumitem}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={180mm,257mm},
+ left=10mm,
+ top=10mm,
+ }
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{xparse}
+% \usepackage{hyperref}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\newcommand{\limit}[2]{ \underset{#1\rightarrow #2}{\lim}\, }
+\newcommand{\convg}[1]{ \overset{#1}{\rightarrow} }
+\newcommand{\var}[1]{ \text{Var}(#1)}
+\newcommand{\cov}[2]{ \text{Cov}(#1, #2)}
+\newcommand*{\expec}[2][]{\underset{\scriptscriptstyle{#1}}{\mathbb{E}}[#2]}
+\newcommand{\Exp}[1]{ \text{Exponential}(#1)}
+\newcommand{\Normal}[2]{ \mathcal{N}(#1, #2)}
+\newcommand{\Beta}[2]{ \text{Beta}(#1, #2)}
+\newcommand{\Pois}[1]{ \text{Poisson}(#1)}
+\newcommand{\Poisf}[2]{ #2^{#1} \frac{e^{-#2}}{#1!}}
+\newcommand{\distiid}{ \overset{iid}{\sim}}
+\newcommand{\prompt}[1]{\begin{tcolorbox}\textbf{\underline{Prompt}}: \textit{#1}\end{tcolorbox}}
+\newcommand*{\samp}[2][n]{#2_{1:#1}}
+\newcommand{\partiald}[2]{\genfrac{}{}{0pt}{1}{\partial#1}{\partial #2}}
+\newcommand{\secpartiald}[2]{\genfrac{}{}{0pt}{1}{\partial#1^2}{\partial #2^2}}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\tp}{^\intercal}
+\newcommand{\loglike}[1]{\mathcal{L}(#1)}
+\newcommand{\fishinf}[1]{\mathcal{I}(#1)}
+
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\begin{document}
+\title{Homework 5 Responses}
+\author{Chris Crabtree}
+\date{Sept. 30, 2021}
+
+{
+\let\clearpage\relax
+\maketitle
+}
+I chose to try and use R for this homework (I always use python and am new to R). 
+Learning the syntax and and proper functions to manipulate data common data structures became very time consuming and I was not able to finish all the problems.
+\input{contents/q1.tex}
+      
+\input{contents/q2.tex}
+
+\input{contents/q3.tex}
+
+\input{contents/q4.tex}
+
+\input{contents/q5.tex}
+
+\input{contents/q6.tex}
+
+\input{contents/q7.tex}
+
+\input{contents/q8.tex}
+
+
+\end{document}
+

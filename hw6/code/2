@@ -1,0 +1,185 @@
+import numpy as np
+import random
+from pydataset import data
+from scipy.stats import invgamma, norm, dirichlet, multivariate_normal
+
+df = data('faithful')
+df = df['waiting']
+data = df.to_numpy()[np.newaxis,:]
+print(data.shape)
+# Number of components in each mixture. 
+K = 3
+T = 5 #data.shape[1]
+
+# p_0((mus, sigmas): NIG(mu_0, sigma^2_0/kappa_0, nu_0, sigma^2_0)
+v = df.var()
+mu_0 = df.mean()
+sigma2_0 = 20#mu_0/(df.shape[0]**(1/2))
+kappa_0 = 10
+nu_0 = 10
+def get_nig_sampler(mu_0, sigma2_0, kappa_0, nu_0):
+    a_0= nu_0/2
+    invg_scale=sigma2_0*nu_0 #Doesn't seem like /2 will be included
+    def nig_sampler():
+        print("a_0", a_0)
+        print("invg_scale", invg_scale)
+        sigma_2 = invgamma.rvs(a_0, scale=invg_scale, size=1)
+        mu = norm.rvs(loc=mu_0, scale=sigma_2/kappa_0, size=1)
+        return  mu[0], sigma_2[0]
+    return nig_sampler
+
+
+
+
+
+# helper funcs
+def get_n_jks(zs):
+    """
+    Collects n_jk's: # transitions from j to k
+    """
+    # zs dim: [1, T]
+    #  contains indeces of non-zero entries of full z vectors
+    ns = np.zeros((K, K))
+    for k in range(K):
+        # print("k:", k)
+        dummy_zs = zs[:, 1:]
+        zs_p1 = zs[:, :T-1]
+        trns_idxs = zs_p1[:, dummy_zs[0]==k]
+        trns_info = np.unique(trns_idxs, return_counts=True)
+        for trns_idx, cnt in zip(*trns_info):
+            ns[int(trns_idx), k] += cnt
+
+    return ns
+### Conditionals
+# pis
+def get_cond_pis_sampler(prior_dir_alphas):
+
+    def cond_pis_sampler(zs):
+        # zs dim: [1, T]
+        #  contains indeces of non-zero entries of full z vectors
+        T = zs.shape[1]
+        # Collect n_jk's: # transitions from j to k
+        ns = get_n_jks(zs)
+        cond_alphas = np.repeat(prior_dir_alphas, K, axis=0)
+        cond_alphas += ns
+        cond_pis = []
+        for j in range(K):
+            cond_pis.append(dirichlet.rvs(cond_alphas[j], size=1))
+
+        sampled_cond_pis = np.concatenate(cond_pis, axis=0)
+        return sampled_cond_pis
+
+    return cond_pis_sampler
+
+
+def get_cond_mu_sigma2_sampler(nu_0, sigma2_0, mu_0, kappa_0):
+    def cond_mu_sigma2_sampler(zs, data):
+        # zs dims: [1,T]
+        # data dims: [1,T}
+        T = data.shape[1]
+        print("data T", T)
+        print("zs:", zs.shape)
+        print("data:", data.shape)
+        cond_mus = np.zeros((K,1))
+        cond_sigma2s = np.zeros((K, 1))
+        for k in range(K):
+            mask = zs[0] == k
+            k_state_idxs = np.arange(T)[mask] 
+            k_state_data = data[:, k_state_idxs]
+            k_state_mu_hat = k_state_data.mean()
+            k_state_s2 = k_state_data.var()
+            if mask.sum() == 0:
+                k_state_mu_hat = 0
+                k_state_s2 = 0
+            k_state_n = k_state_idxs.shape[0]
+            cond_nu_0 = nu_0 + k_state_n
+            cond_kappa_0 = kappa_0 + k_state_n
+            cond_mu_0 = (kappa_0*mu_0 + k_state_n*k_state_mu_hat)/(kappa_0 + k_state_n)
+            cond_sigma2_0 = 1/cond_nu_0 *(nu_0*sigma2_0 + (k_state_n-1)*k_state_s2 + \
+                                            ((k_state_n*kappa_0)/(k_state_n+kappa_0))*(k_state_mu_hat - mu_0)**2)
+            new_mu, new_sigma2 = get_nig_sampler(cond_mu_0, cond_sigma2_0, cond_kappa_0, cond_nu_0)()
+            cond_mus[k, 0] = new_mu
+            cond_sigma2s[k, 0] = new_sigma2
+
+        return cond_mus, cond_sigma2s
+            
+    return cond_mu_sigma2_sampler
+
+def forward(s, pis, data, mus, sigma2s,):
+    # pis dims: [K, K]
+    # s dims: [1, K]
+    # data dims: [1,T]
+    # mus dims: [K,1]
+    # sigmas dims: [K,1]
+    K = s.shape[1]
+    T = 5#data.shape[1]
+    phis = np.ones((K, T))
+    tmp = np.zeros((K,1))+s.T
+    tmp *= norm.pdf(data[0,0],loc=mus[:,0], scale=np.sqrt(sigma2s)[:,0])[:, np.newaxis]
+    phis[:,0:1] = tmp/tmp.sum()
+    print("first phi")
+    print(phis)
+    print(phis.shape)
+
+
+    # phis dims: [K, T]
+    idxs = np.arange(K)
+    zs = [np.random.choice(idxs, size=1, p=phis[:,0])[0]]
+    print("first z")
+    print(zs)
+    for t in range(1,T+1):
+        phi_t = (phis[:,t-1:t] * pis).sum(axis=0, keepdims=True).T #dims: [K,1]
+
+        tmp = norm.pdf(data[0,0],loc=mus[:,0], scale=np.sqrt(sigma2s)[:,0])[:,np.newaxis]
+        phi_t *= tmp
+        phi_t = phi_t/phi_t.sum()
+        z_t =np.random.choice(idxs, size=1, p=phi_t[:,0])[0] 
+        zs.append(z_t)
+        print(f"z{t+1}:", z_t)
+        print("phi",t)
+        print(phis)
+        phis[:,t:t+1] = phi_t
+        
+
+
+
+
+
+zs = []
+for i in range(T):
+    zs.append(random.randint(0,K-1))
+
+# nig_sampler = get_nig_sampler(mu_0, sigma2_0, kappa_0, nu_0)
+prior_dir_alphas = np.full((1,K), 1/K)
+dir_prior_sampler = lambda : dirichlet.rvs(alpha=prior_dir_alphas[0], size=1)
+
+# initialize
+zs = np.array(zs)[np.newaxis, :]
+s = dir_prior_sampler()
+pis = np.concatenate([dir_prior_sampler() for i in range(K)], axis=0)
+cond_mu_sigma2_sampler = get_cond_mu_sigma2_sampler(nu_0, sigma2_0, mu_0, kappa_0)
+mus, sigma2s = cond_mu_sigma2_sampler(zs, data[:,:T])
+
+print("mus")
+print(mus)
+print(mus.shape)
+print("sigma2s")
+print(sigma2s)
+forward(s, pis, data, mus, sigma2s)
+# # Gibbs sampler
+# reps = 1
+# for i in range(reps):
+#     # Initialize 
+#     pis = np.zeros((K,K)) # will be KxK matrix
+#     zs = np.zeros((1,T))-1 # will be KxT matrix
+#     pass
+
+
+
+
+
+
+
+
+
+
