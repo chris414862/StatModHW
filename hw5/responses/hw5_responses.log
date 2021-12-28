@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.1.29)  28 NOV 2021 23:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.8.22)  26 DEC 2021 10:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -465,22 +465,22 @@ File: ../code/q2/plots/x1_lag1_autocorr.png Graphic file (type png)
 <use ../code/q2/plots/x1_lag1_autocorr.png>
 Package pdftex.def Info: ../code/q2/plots/x1_lag1_autocorr.png  used on input line 26.
 (pdftex.def)             Requested size: 256.0748pt x 256.0806pt.
-) (./contents/q3.tex) (./contents/q4.tex) (./contents/q5.tex) (./contents/q6.tex) (./contents/q7.tex) (./contents/q8.tex) [1
+) (./contents/q3.tex) (./contents/q4.tex [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <../code/q1/plots/resample_m100.png (PNG copy)> <../code/q1/plots/resample_m10000.png (PNG copy)>] [3 <../code/q2/plots/gibbs_samples.png> <../code/q2/plots/x1_trace_plot.png>] [4 <../code/q2/plots/x1_lag1_autocorr.png (PNG copy)>] (./hw5_responses.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <../code/q1/plots/resample_m100.png (PNG copy)> <../code/q1/plots/resample_m10000.png (PNG copy)>] [3 <../code/q2/plots/gibbs_samples.png> <../code/q2/plots/x1_trace_plot.png>] (./contents/q4/q4_a.tex [4 <../code/q2/plots/x1_lag1_autocorr.png (PNG copy)>]) (./contents/q4/q4_b.tex) (./contents/q4/q4_c.tex) (./contents/q4/q4_d.tex)) (./contents/q5.tex) (./contents/q6.tex) (./contents/q7.tex) (./contents/q8.tex) [5] (./hw5_responses.aux) ) 
 Here is how much of TeX's memory you used:
- 13962 strings out of 481239
- 273165 string characters out of 5920377
- 503270 words of memory out of 5000000
- 28970 multiletter control sequences out of 15000+600000
- 541101 words of font info for 58 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 59i,6n,75p,835b,234s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on hw5_responses.pdf (4 pages, 168387 bytes).
+ 14019 strings out of 483107
+ 274391 string characters out of 5964630
+ 501553 words of memory out of 5000000
+ 28771 multiletter control sequences out of 15000+600000
+ 541448 words of font info for 59 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 59i,14n,75p,835b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on hw5_responses.pdf (5 pages, 244500 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 90 PDF objects out of 1000 (max. 8388607)
+ 60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

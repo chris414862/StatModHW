@@ -1,0 +1,18 @@
+\subsection{}
+\prompt{Find conjugate priors for $\rho$ and $\sigma^2$.}
+
+Starting with the likelihood we have:
+\begin{align*}
+    \mathcal{L}(\theta = \begin{bmatrix}\rho \\ \sigma^2\end{bmatrix}) 
+    &= \prod_{i=1}^T \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{(1-\rho^2)(y_i - \rho y_{i-1})^2}{2\sigma^2}}\\
+    &=  \Big(\frac{1}{\sqrt{2\pi \sigma^2}}\Big)^T e^{-\frac{(1-\rho^2)}{2\sigma^2}\sum_{i=1}^T (y_i - \rho y_{i-1})^2}
+\end{align*}
+To find the conjugate prior for $\rho, \sigma^2$ we need to eliminate all factors in the likelihood unrelated to both  $\rho$ and $\sigma^2$ up to a constant of proportionality and recognize the kernel.
+\begin{align*}
+    \mathcal{L}(\theta = \begin{bmatrix}\rho \\ \sigma^2\end{bmatrix}) 
+    &=  \Big(\frac{1}{\sqrt{2\pi \sigma^2}}\Big)^T e^{-\frac{(1-\rho^2)}{2\sigma^2}\sum_{i=1}^T (y_i - \rho y_{i-1})^2}\\
+    &\propto \Big(\frac{1}{\sqrt{\sigma^2}}\Big)^T e^{\frac{\rho^2}{2\sigma^2}\sum_{i=1}^T (y_i - \rho y_{i-1})^2}\\
+    &= \Big(\frac{1}{\sqrt{\sigma^2}}\Big)^T e^{\frac{\rho^2}{2\sigma^2}\sum_{i=1}^T y_i^2 -2\rho y_i y_{i-1} +\rho^2 y_{i-1}^2}\\
+    &\propto \Big(\frac{1}{\sqrt{\sigma^2}}\Big)^T e^{\frac{\rho^2}{2\sigma^2}\sum_{i=1}^T \rho^2 y_{i-1}^2 -2\rho y_i y_{i-1}} \\
+    &\propto \Big(\frac{1}{\sqrt{\sigma^2}}\Big)^T e^{\frac{\rho^2}{2\sigma^2}\sum_{i=1}^T \rho^2 y_{i-1}^2 -2\rho y_i y_{i-1}} \tag*{(completing the square)}\\
+\end{align*}
